@@ -2,6 +2,7 @@ class State():
     LOW = 0
     HIGH = 1
 
+
 class Mode():
     INPUT = 0
     OUTPUT = 1

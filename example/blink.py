@@ -1,5 +1,5 @@
 import troykahat
-from pin import State, Mode
+from troykahat import State, Mode
 from time import sleep
 
 # Gives access to all the functions of GPIO, which are marked Wiring PI IO.

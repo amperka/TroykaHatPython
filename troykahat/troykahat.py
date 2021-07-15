@@ -26,5 +26,5 @@ def analog_io(i2c_address=42):
     --------
     Object gpio_expander. See API.md for the functions reference.
     """
-    import gpio_expander
+    from troykahat import gpio_expander
     return gpio_expander.GpioExpander(i2c_address)

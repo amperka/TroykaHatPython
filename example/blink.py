@@ -1,5 +1,5 @@
 import troykahat
-from troykahat import State, Mode
+from troykahat import Mode
 from time import sleep
 
 # Gives access to all the functions of GPIO, which are marked Wiring PI IO.
@@ -16,14 +16,14 @@ ap.pinMode(7, Mode.OUTPUT)
 
 while True:
     # Sets HIGH voltage level for Pin 7 of Wiring PI IO.
-    wp.digitalWrite(7, State.HIGH)
+    wp.digitalWrite(7, True)
     # Sets HIGH voltage level for Pin 7 of Analog IO.
-    ap.digitalWrite(7, State.HIGH)
+    ap.digitalWrite(7, True)
     # Wait 500 ms.
     sleep(0.5)
     # Sets HIGH voltage level for Pin 7 of Wiring PI IO.
-    wp.digitalWrite(7, State.LOW)
+    wp.digitalWrite(7, False)
     # Sets HIGH voltage level for Pin 7 of Analog IO.
-    ap.digitalWrite(7, State.LOW)
+    ap.digitalWrite(7, False)
     # Wait 500 ms.
     sleep(0.5)

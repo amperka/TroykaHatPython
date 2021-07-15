@@ -1,9 +1,5 @@
 from .troykahat import wiringpi_io, analog_io
 
-class State():
-    LOW = 0
-    HIGH = 1
-
 
 class Mode():
     INPUT = 0

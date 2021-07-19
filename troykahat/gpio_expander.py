@@ -1,5 +1,4 @@
 import wiringpi
-from troykahat import Mode
 
 
 class GpioExpander(object):
@@ -28,23 +27,23 @@ class GpioExpander(object):
     After power off or reset, device will start with new I²C address.
     """
 
-    PORT_MODE_INPUT = 0x04
+    INPUT = 0x04
     """Set input mode on virtual port 0 pins. If argument is
     0b0000000000000101, virtual pins 0 and 2 will be set on input mode.
     """
 
-    PORT_MODE_PULLUP = 0x05
+    INPUT_PULLUP = 0x05
     """Set input pullup mode on virtual port 0 pins. If argument is
     0b0000000000000101, virtual pins 0 and 2 will be set on input pullup mode.
     """
 
-    PORT_MODE_PULLDOWN = 0x06
+    INPUT_PULLDOWN = 0x06
     """Set input pulldown mode on virtual port 0 pins.
     If argument is 0b0000000000000101,
     virtual pins 0 and 2 will be set on input pulldown mode.
     """
 
-    PORT_MODE_OUTPUT = 0x07
+    OUTPUT = 0x07
     """Set output mode on virtual port 0 pins.
     If argument is 0b0000000000000101,
     virtual pins 0 and 2 will be set on output mode with low value.
@@ -167,18 +166,9 @@ class GpioExpander(object):
         --------
         None
         """
+
         data = self._reverse_uint16(1 << pin)
-        if mode == Mode.INPUT:
-            self._i2c.writeReg16(self._io, GpioExpander.PORT_MODE_INPUT, data)
-        elif mode == Mode.INPUT_PULLUP:
-            self._i2c.writeReg16(
-                self._io, GpioExpander.PORT_MODE_PULLUP, data)
-        elif mode == Mode.INPUT_PULLDOWN:
-            self._i2c.writeReg16(
-                self._io, GpioExpander.PORT_MODE_PULLDOWN, data)
-        elif mode == Mode.OUTPUT:
-            self._i2c.writeReg16(
-                self._io, GpioExpander.PORT_MODE_OUTPUT, data)
+        self._i2c.writeReg16(self._io, mode, data)
 
     def digitalRead(self, pin):
         """Reads a digital signal value from a pin of the board.

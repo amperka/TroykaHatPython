@@ -1,5 +1,4 @@
 import troykahat
-from troykahat import Mode
 from time import sleep
 
 # Gives access to all the functions of GPIO, which are marked Wiring PI IO.
@@ -10,11 +9,12 @@ wp = troykahat.wiringpi_io()
 # See API.md for the functions reference.
 ap = troykahat.analog_io()
 # Configures Pin 7 of Wiring PI IO as an output mode.
-wp.pinMode(7, Mode.OUTPUT)
+wp.pinMode(7, wp.OUTPUT)
 # Configures Pin 7 of Analog IO as an output mode.
-ap.pinMode(7, Mode.OUTPUT)
+ap.pinMode(7, ap.OUTPUT)
 
 while True:
+
     # Sets HIGH voltage level for Pin 7 of Wiring PI IO.
     wp.digitalWrite(7, True)
     # Sets HIGH voltage level for Pin 7 of Analog IO.

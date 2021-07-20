@@ -20,7 +20,7 @@ wp.pinMode(PIN_WP_BUTTON, wp.INPUT)
 while True:
 
     # If button is pressed.
-    if (not(wp.digitalRead(PIN_WP_BUTTON))):
+    if not(wp.digitalRead(PIN_WP_BUTTON)):
         # Sets HIGH voltage level for Pin Led of Wiring PI IO.
         wp.digitalWrite(PIN_WP_LED, True)
     # If button is released.

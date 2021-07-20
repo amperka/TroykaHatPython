@@ -7,19 +7,20 @@ from time import sleep
 PIN_AP_LED = 7
 
 
-# Gives access to all the functions of GPIO, which are marked Analog IO.
-# See API.md for the functions reference.
+# Gives access to all the functions of GPIO, 
+# that are labeled "Analog IO" on the HAT.
+# Check API.md for the functions reference.
 ap = troykahat.analog_io()
-# Configures Pin Led of Analog IO as an output mode.
+# Configures the LED pin of Analog IO to an output mode.
 ap.pinMode(PIN_AP_LED, ap.OUTPUT)
 
 while True:
 
-    # Sets HIGH voltage level for Pin Led of Analog IO.
+    # Sets HIGH voltage level for the LED pin of Analog IO.
     ap.digitalWrite(PIN_AP_LED, True)
     # Wait 500 ms.
     sleep(0.5)
-    # Sets HIGH voltage level for Pin Led of Analog IO.
+    # Sets HIGH voltage level for the LED pin of Analog IO.
     ap.digitalWrite(PIN_AP_LED, False)
     # Wait 500 ms.
     sleep(0.5)

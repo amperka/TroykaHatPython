@@ -15,7 +15,7 @@ following commands:
 6. Use the right arrow to select the **\<Finish\>** button.
 7. Reboot your Raspberry Pi to make the I²C interface appear.
 
-After reboot, log in and enter the following command:
+After the reboot, log in and enter the following command:
 
 ```shell
 $ ls /dev/i2c*
@@ -45,7 +45,7 @@ Turn it on.
 sudo i2cdetect -y 1
 ```
 
-In response Raspberry Pi will show the addresses of all connected I²C devices. Check if `0x2A` address is present.
+In response, Raspberry Pi will show the addresses of all connected I²C devices. Check if the `0x2A` address is present.
 
 ## Installation Library
 

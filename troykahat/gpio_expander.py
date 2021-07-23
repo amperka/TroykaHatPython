@@ -2,10 +2,10 @@ import wiringpi
 
 
 class GpioExpander(object):
-    """Gives access to the pin control methods, that are connected to
-    I²C expander based on STM32F030F4P6 controller.
-    In case of Troyka HAT these are pins, that are marked "Analog IO"
-    on the Troyka HAT board. To create an object use "analog_io" function.
+    """Gives access to the control methods of the pins connected to 
+     the I²C expander based on the STM32F030F4P6 controller.
+    In the case of Troyka HAT, these are the pins labeled as "Analog IO"
+    on the Troyka HAT board. To create an object, use the "analog_io" function.
     """
 
     UID = 0x00
@@ -156,7 +156,7 @@ class GpioExpander(object):
         Parameters:
         -----------
         pin: int
-            The number of the pin, which is marked on the Troyka HAT board
+            The number of the pin indexed from `0` to `7`
             with an index from 0 to 7 on the group "Analog IO".
         mode: pin mode:
             INPUT: input mode.
@@ -178,7 +178,7 @@ class GpioExpander(object):
         Parameters:
         -----------
         pin: int
-            The number of the pin, which is marked on the Troyka HAT board
+            The number of the pin indexed from `0` to `7`
             with an index from 0 to 7 on the group "Analog IO".
 
         Returns:
@@ -200,7 +200,7 @@ class GpioExpander(object):
         Parameters:
         -----------
         pin: int
-            The number of the pin, which is marked on the Troyka HAT board
+            The number of the pin indexed from `0` to `7`
             with an index from 0 to 7 on the group "Analog IO".
         value: bool
             True / 1 — corresponds to the high level of 3.3 V.
@@ -222,12 +222,12 @@ class GpioExpander(object):
         Parameters:
         -----------
         pin: int
-            The number of the pin, which is marked on the Troyka HAT board
+            The number of the pin indexed from `0` to `7`
             with an index from 0 to 7 on the group "Analog IO".
 
         Returns:
         --------
-        Returns a value from 0.0 to 1.0, that directly corresponds to
+        Returns a value from 0.0 to 1.0, directly corresponding to
         a pin voltage from 0 V to 3.3 V.
         """
         return self._analogRead16(pin) / 4095.0
@@ -238,10 +238,10 @@ class GpioExpander(object):
         Parameters:
         -----------
         pin: int
-            The number of the pin, which is marked on the Troyka HAT board
+            The number of the pin indexed from `0` to `7`
             with an index from 0 to 7 on the group "Analog IO".
         value: float
-            The value from 0.0 to 1.0, that directly corresponds to
+            The value from 0.0 to 1.0, directly corresponding to
             PWM duty cycle from 0 to 100%.
 
         Returns:

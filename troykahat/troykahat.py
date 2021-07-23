@@ -1,6 +1,7 @@
 def wiringpi_io():
-    """Creates and returns the reference to the wiringpi module for work
-    with pins are marked as "Wiring Pi IO" on the Troyka HAT board.
+    """Creates and returns the reference to the `wiringpi` module for work
+    with pins labeled as "Wiring Pi IO" on the Troyka HAT board.
+    These pins are connected directly to Raspberry Pi via GPIO connector.
 
     Returns:
     --------
@@ -13,8 +14,10 @@ def wiringpi_io():
 
 
 def analog_io(i2c_address=42):
-    """Creates and returns the new analog_io object to work
-    with pins marked as "Analog IO" on the Troyka HAT board.
+    """Creates and returns the new `analog_io` object to work
+    with pins labeled as "Analog IO" on the Troyka HAT board.
+    These pins are connected to the I²C expander
+    based on STM32F030F4P6 controller.
 
     Optional parameters:
     -------------------

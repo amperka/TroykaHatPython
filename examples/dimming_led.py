@@ -8,7 +8,8 @@ PIN_AP_LED = 7
 # Connect an Potentiometer to this pin.
 PIN_AP_POT = 3
 
-# Gives access to all the functions of GPIO, that are labeled "Analog IO" on the HAT.
+# Gives access to all the functions of GPIO,
+# that are labeled "Analog IO" on the HAT.
 # See API.md for the functions reference.
 ap = troykahat.analog_io()
 # Configures the LED pin of Analog IO to an output mode.

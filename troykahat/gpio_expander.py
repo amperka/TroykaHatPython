@@ -2,10 +2,10 @@ import wiringpi
 
 
 class GpioExpander(object):
-    """Class to communicate with a particular board based for
-    Amperka GPIO Expander with an STM32F030F4P6 microcontroller.
-    In our case, this is a group of pins "Analog IO" on the Troyka HAT board.
-    Use analog_io to create an object.
+    """Gives access to the control methods of the pins connected to
+     the I²C expander based on the STM32F030F4P6 controller.
+    In the case of Troyka HAT, these are the pins labeled as "Analog IO"
+    on the Troyka HAT board. To create an object, use the "analog_io" function.
     """
 
     UID = 0x00
@@ -140,7 +140,6 @@ class GpioExpander(object):
     def __init__(self, i2c_address):
         """The constructor for GpioExpander class.
 
-
         Optional parameters:
         --------------------
         i2c_address: int
@@ -152,15 +151,18 @@ class GpioExpander(object):
         self._io = self._i2c.setupInterface("/dev/i2c-1", i2c_address)
 
     def pinMode(self, pin, mode):
-        """Configures the pin operation mode.
+        """Configures the pin mode.
 
         Parameters:
         -----------
         pin: int
-            The number of the used pin, which is marked on the Troyka HAT board
-            with an index from 0 to 7 on the group "Analog IO".
-        mode: Mode
-            Pin operation mode. See the available modes in the Mode class.
+            The number of the pin indexed from `0` to `7`
+            on the "Analog IO" group of Troyka HAT board.
+        mode: pin mode:
+            INPUT: input mode.
+            INPUT_PULLUP: pull-up input mode.
+            INPUT_PULLDOWN: pull-down input mode.
+            OUTPUT: output mode.
 
         Returns:
         --------
@@ -171,18 +173,19 @@ class GpioExpander(object):
         self._i2c.writeReg16(self._io, mode, data)
 
     def digitalRead(self, pin):
-        """Reads a digital signal value from a pin of the board.
+        """Reads the digital value from a pin.
 
         Parameters:
         -----------
         pin: int
-            The number of the used pin, which is marked on the Troyka HAT board
-            with an index from 0 to 7 on the group "Analog IO".
+            The number of the pin indexed from `0` to `7`
+            on the "Analog IO" group of Troyka HAT board.
 
         Returns:
         --------
-        True: High level, which conforming to 3.3V.
-        False: Low level, which conforming to 0V.
+        True: High level of 3.3 V.
+        False: Low level of 0 V.
+
         """
         mask = 1 << pin
         result = 0
@@ -192,16 +195,16 @@ class GpioExpander(object):
 
     def digitalWrite(self, pin, value):
         """
-        Sets the digital signal on the pin of the board.
+        Sets the digital value to a pin.
 
         Parameters:
         -----------
         pin: int
-            The number of the used pin, which is marked on the Troyka HAT board
-            with an index from 0 to 7 on the group "Analog IO".
+            The number of the pin indexed from `0` to `7`
+            on the "Analog IO" group of Troyka HAT board.
         value: bool
-            True / 1 — setting high level.
-            False / 0 — setting low level.
+            True / 1 — corresponds to the high level of 3.3 V.
+            False / 0 — corresponds to the low level of 0 V.
 
         Returns:
         --------
@@ -214,37 +217,36 @@ class GpioExpander(object):
         self._i2c.writeReg16(self._io, state, data)
 
     def analogRead(self, pin):
-        """Reads an analog signal on a pin of the board.
+        """Reads the analog value from a pin.
 
         Parameters:
         -----------
         pin: int
-            The number of the used pin, which is marked on the Troyka HAT board
-            with an index from 0 to 7 on the group "Analog IO".
+            The number of the pin indexed from `0` to `7`
+            on the "Analog IO" group of Troyka HAT board.
 
         Returns:
         --------
-        The return value is from 0.0 to 1.0, which is directly proportional
-        to the voltage on the pin from 0 to 3.3 V.
+        Returns a value from 0.0 to 1.0, directly corresponding to
+        a pin voltage from 0 V to 3.3 V.
         """
         return self._analogRead16(pin) / 4095.0
 
     def analogWrite(self, pin, value):
-        """Sets the analog value as a PWM signal.
+        """Sets the analog value to a pin.
 
         Parameters:
         -----------
         pin: int
-            The number of the used pin, which is marked on the Troyka HAT board
-            with an index from 0 to 7 on the group "Analog IO".
+            The number of the pin indexed from `0` to `7`
+            on the "Analog IO" group of Troyka HAT board.
         value: float
-            The number of the used pin, which is marked on the Troyka HAT board
-            with an index from 0 to 7 on the group "Analog IO".
+            The value from 0.0 to 1.0, directly corresponding to
+            PWM duty cycle from 0 to 100%.
 
         Returns:
         --------
-        The value from 0.0 to 1.0, which is directly proportional
-        to the duty cycle of the PWM signal from 0 to 100%.
+        None
         """
         value = int(value * 255)
         data = (pin & 0xFF) | ((value & 0xFF) << 8)
@@ -252,26 +254,28 @@ class GpioExpander(object):
 
     def changeAddress(self, newAddress):
         """
-        Changes the I²C address of the module.
+        Changes the I²C address of the board.
 
         Parameters:
         -----------
         newAddress: int
             New I²C address of the board.
 
-        The change is in effect only while the board is powered on.
-        If you want to save it permanently call the "save_address" method.
+        Returns:
+        --------
+        None
         """
         self._i2c.writeReg16(
             self._io, GpioExpander.CHANGE_I2C_ADDR, newAddress)
 
     def saveAddress(self):
         """
-        Saves the I²C address of the device in the EEPROM,
+        Saves the current I²C address of the board to the EEPROM,
         which was previously changed using the "changeAddress" method.
 
         Returns:
         --------
+        None
         """
         self._i2c.write(self._io, GpioExpander.SAVE_I2C_ADDR)
 

@@ -7,7 +7,7 @@ from time import sleep
 PIN_AP_LED = 7
 
 
-# Gives access to all the functions of GPIO, 
+# Gives access to all the functions of GPIO,
 # that are labeled "Analog IO" on the HAT.
 # Check API.md for the functions reference.
 ap = troykahat.analog_io()

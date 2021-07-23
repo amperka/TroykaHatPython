@@ -10,11 +10,13 @@ PIN_WP_LED = 7
 PIN_AP_LED = 7
 
 
-# Gives access to all the functions of GPIO, that are labeled "Wiring PI IO" on the HAT.
+# Gives access to all the functions of GPIO,
+# that are labeled "Wiring PI IO" on the HAT.
 # Check WiringPI library API (https://github.com/WiringPi/WiringPi-Python)
 # for the functions reference.
 wp = troykahat.wiringpi_io()
-# Gives access to all the functions of GPIO, that are labeled "Analog IO" on the HAT.
+# Gives access to all the functions of GPIO,
+# that are labeled "Analog IO" on the HAT.
 # Check API.md for the functions reference.
 ap = troykahat.analog_io()
 # Configures the LED pin of Wiring PI IO to an output mode.

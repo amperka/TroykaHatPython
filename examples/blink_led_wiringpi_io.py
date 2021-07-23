@@ -7,7 +7,8 @@ from time import sleep
 PIN_WP_LED = 7
 
 
-# Gives access to all the functions of GPIO, that are labeled "Wiring PI IO" on the HAT.
+# Gives access to all the functions of GPIO,
+# that are labeled "Wiring PI IO" on the HAT.
 # Check WiringPI library API (https://github.com/WiringPi/WiringPi-Python)
 # for the functions reference.
 wp = troykahat.wiringpi_io()

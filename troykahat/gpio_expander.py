@@ -2,7 +2,7 @@ import wiringpi
 
 
 class GpioExpander(object):
-    """Gives access to the control methods of the pins connected to 
+    """Gives access to the control methods of the pins connected to
      the I²C expander based on the STM32F030F4P6 controller.
     In the case of Troyka HAT, these are the pins labeled as "Analog IO"
     on the Troyka HAT board. To create an object, use the "analog_io" function.
@@ -157,7 +157,7 @@ class GpioExpander(object):
         -----------
         pin: int
             The number of the pin indexed from `0` to `7`
-            with an index from 0 to 7 on the group "Analog IO".
+            on the "Analog IO" group of Troyka HAT board.
         mode: pin mode:
             INPUT: input mode.
             INPUT_PULLUP: pull-up input mode.
@@ -179,7 +179,7 @@ class GpioExpander(object):
         -----------
         pin: int
             The number of the pin indexed from `0` to `7`
-            with an index from 0 to 7 on the group "Analog IO".
+            on the "Analog IO" group of Troyka HAT board.
 
         Returns:
         --------
@@ -201,7 +201,7 @@ class GpioExpander(object):
         -----------
         pin: int
             The number of the pin indexed from `0` to `7`
-            with an index from 0 to 7 on the group "Analog IO".
+            on the "Analog IO" group of Troyka HAT board.
         value: bool
             True / 1 — corresponds to the high level of 3.3 V.
             False / 0 — corresponds to the low level of 0 V.
@@ -223,7 +223,7 @@ class GpioExpander(object):
         -----------
         pin: int
             The number of the pin indexed from `0` to `7`
-            with an index from 0 to 7 on the group "Analog IO".
+            on the "Analog IO" group of Troyka HAT board.
 
         Returns:
         --------
@@ -239,7 +239,7 @@ class GpioExpander(object):
         -----------
         pin: int
             The number of the pin indexed from `0` to `7`
-            with an index from 0 to 7 on the group "Analog IO".
+            on the "Analog IO" group of Troyka HAT board.
         value: float
             The value from 0.0 to 1.0, directly corresponding to
             PWM duty cycle from 0 to 100%.
